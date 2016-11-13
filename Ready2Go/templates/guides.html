@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Guide info</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="../static/img/img.ico">
+    <script src="../static/js/jquery-1.11.2.js"></script>
+
+    <style>
+        .btn-file {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-file input[type=file] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            min-width: 100%;
+            min-height: 100%;
+            font-size: 100px;
+            text-align: right;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            outline: none;
+            background: white;
+            cursor: inherit;
+            display: block;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+    <div class="header">
+        <nav>
+            <ul class="nav nav-pills pull-right">
+                <li role="presentation"><a href="/">Home</a></li>
+                <li role="presentation" ><a href="/Showsearch">Search</a></li>
+                <li role="presentation"><a href="/ShowSignIn">Sign In</a></li>
+                <li role="presentation"><a href="/ShowSignUp">Sign Up</a></li>
+            </ul>
+        </nav>
+        <h3 class="text-primary">Ready2Go <small>GUIDE INFO</small></h3>
+    </div>
+
+    <ul class="nav nav-tabs nav-justified" role="tablist">
+
+        <!--information-->
+        <div class="panel panel-primary">  <!--name-->
+            <div class="panel-heading">
+                <h3 class="panel-title">Guide name</h3>
+            </div>
+            <div class="panel-body">
+                <p style="font-size:20px">name: {{ guides[1] }} </p>
+                <small>guide ID:  {{  guides[0] }}</small>
+            </div>
+        </div>
+
+        <div class="panel panel-info"> <!--gender-->
+            <div class="panel-heading">
+                <h3 class="panel-title">Gender</h3>
+            </div>
+            <div class="panel-body">
+                {% if guides[3] == 'M' %}
+                <p style="font-size:20px">Male</p>
+                {% elif guides[3] == 'F' %}
+                <p style="font-size:20px">female</p>
+                {% else %}
+                <p style="font-size:20px">None</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="panel panel-info"> <!--phone-->
+            <div class="panel-heading">
+                <h3 class="panel-title">Phone</h3>
+            </div>
+            <div class="panel-body">
+                <p style="font-size:20px">{{ guides[2] }}</p>
+            </div>
+        </div>
+
+        <div class="panel panel-info"> <!--start working-->
+            <div class="panel-heading">
+                <h3 class="panel-title">Start working time</h3>
+            </div>
+            <div class="panel-body">
+                <p style="font-size:20px">{{ guides[4] }}</p>
+            </div>
+        </div>
+        <div class="panel panel-info"> <!--Agency-->
+            <div class="panel-heading">
+                <h3 class="panel-title">Agency info</h3>
+            </div>
+            <div class="panel-body">
+                <p style="font-size:20px">name: {{ guides[5] }}</p>
+                <p style="font-size:20px">address: {{ guides[7] }}</p>
+                <p style="font-size:20px">establishing time: {{ guides[8] }}</p>
+                <p style="font-size:20px">telephone: {{ guides[9] }}</p>
+            </div>
+        </div>
+    </ul>
+
+    <footer class="footer">
+        <p>Ready2Go</p>
+    </footer>
+
+</div>
+</body>
+</html>
+

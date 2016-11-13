@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Group Information</title>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="img.ico">
+    <script src="../static/js/jquery-1.11.2.js"></script>
+
+
+    <style>
+        .btn-file {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-file input[type=file] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            min-width: 100%;
+            min-height: 100%;
+            font-size: 100px;
+            text-align: right;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            outline: none;
+            background: white;
+            cursor: inherit;
+            display: block;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+    <div class="header">
+        <nav>
+            <ul class="nav nav-pills pull-right">
+                <li role="presentation"><a href="home_login">Home</a></li>
+                <li role="presentation" ><a href="/Showsearch_login">Search</a></li>
+                <li role="presentation"><a href="/personInfo">My Account</a></li>
+                <li role="presentation"><a href="/logout">Log Out</a></li>
+            </ul>
+        </nav>
+
+
+        <h3 class="text-primary">Ready2Go <small>GROUP INFO</small></h3>
+    </div>
+    <p style="font-size:40px">{{ group[1] }}</p>
+
+
+    <div align="right">
+        <p style="font-size:20px">price:{{ group[4] }}</p>
+        <p><a class="btn btn-info" href="/addFavorite?groupname={{ group[1] }}" role="button">Like</a>
+        <a class="btn btn-info" href="/addHistory?groupname={{ group[1] }}" role="button">Order</a></p>
+    </div>
+        <div align="right">
+
+
+
+
+
+    </div>
+
+    <!--information-->
+
+    <div class="panel panel-primary">  <!--name-->
+
+        <div class="panel-heading">
+
+            <h3 class="panel-title">Group info</h3>
+
+        </div>
+
+        <div class="panel-body">
+            <p style="font-size:20px">number of people: {{ group[3] }}</p>
+            <p style="font-size:20px">start date: {{ group[5] }}</p>
+        </div>
+
+    </div>
+
+    <div class="panel panel-info">  <!--guides-->
+
+        <div class="panel-heading">
+            <h3 class="panel-title">guide info</h3>
+        </div>
+        <div class="panel-body">
+            <div style="font-size:20px">
+                          <nav>
+                               <a href="/guideinfo_login?guide_id={{ guides[0] }}">{{ guides[1] }}</a>
+                          </nav>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="panel panel-info"> <!--route-->
+
+        <div class="panel-heading">
+
+            <h3 class="panel-title">Route</h3>
+
+        </div>
+
+        <div class="panel-body">
+
+            <p style="font-size:20px">start place: {{ route[1] }}</p>
+            <p style="font-size:20px">destination	: {{ route[2] }}</p>
+            <p style="font-size:20px">days: {{ route[3] }}</p>
+            {% for n in routesc %}
+                <div  class="row">
+                      <div style="font-size:20px", class="col-md-2">day{{ n[2] }}:</div>
+                      <div style="font-size:20px", class="col-md-8">
+                          <nav>
+                               <a href="/scenic_login?scenicname={{n[1]}}">{{n[1]}}</a>
+                          </nav>
+                      </div>
+                </div>
+            {% endfor %}
+
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <div class="panel panel-info"> <!--Hotel-->
+
+        <div class="panel-heading">
+
+            <h3 class="panel-title">Hotel</h3>
+
+        </div>
+
+        <div class="panel-body">
+            {% for n in hotel %}
+                <p style="font-size:20px">name: {{  n[5] }}</p>
+                <p style="font-size:20px">starlevel: {{  n[7] }}</p>
+                <p style="font-size:20px">address: {{ n[6] }}</p>
+                <p style="font-size:20px">check in date: &nbsp{{ n[2] }}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspcheck out date: &nbsp{{ n[3] }}</p>
+            {% endfor %}
+        </div>
+
+    </div>
+
+
+
+    <div class="panel panel-info"> <!--preference-->
+
+        <div class="panel-heading">
+
+            <h3 class="panel-title">transpotation</h3>
+
+        </div>
+
+        <div class="panel-body">
+            {% for n in trans %}
+            <p style="font-size:20px">flight: {{  n[1] }}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    date: {{  n[7]  }}</p>
+            <p style="font-size:20px">{{  n[2]  }} to {{  n[4]  }} &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspstart time: {{  n[3]  }}</p>
+            {% endfor %}
+        </div>
+
+    </div>
+
+
+    <footer class="footer">
+        <p>Ready2Go</p>
+    </footer>
+
+</div>
+</body>
+</html>
+

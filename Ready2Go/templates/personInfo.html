@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Account</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="../static/img/img.ico">
+    <script src="../static/js/jquery-1.11.2.js"></script>
+
+    <style>
+        .btn-file {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-file input[type=file] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            min-width: 100%;
+            min-height: 100%;
+            font-size: 100px;
+            text-align: right;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            outline: none;
+            background: white;
+            cursor: inherit;
+            display: block;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+    <div class="header">
+        <nav>
+            <ul class="nav nav-pills pull-right">
+                <li role="presentation"><a href="/home_login">Home</a></li>
+                <li role="presentation" class="active"><a href="#">My Account</a></li>
+                <li role="presentation" ><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+        <h3 class="text-primary">Ready2Go <small>ACCOUNT</small></h3>
+    </div>
+
+    <ul class="nav nav-tabs nav-justified" role="tablist">
+        <li role="presentation" class="active"><a href="#">Profile</a></li>
+        <li role="presentation"><a href="/history">Order</a></li>
+        <li role="presentation"><a href="/favorite">Favorite</a></li>
+        <div align="right">
+            <p><a class="btn btn-success btn-default" href="/ShowManageInfo" role="button">Manage</a></p>
+        </div>
+        <!--information-->
+        <div class="panel panel-primary">  <!--name-->
+            <div class="panel-heading">
+                <h3 class="panel-title">Username</h3>
+            </div>
+            <div class="panel-body">
+                <p style="font-size:20px">{{ username }}</p>
+                <small>User ID: {{ uid }}</small>
+            </div>
+        </div>
+
+        <div class="panel panel-info"> <!--gender-->
+            <div class="panel-heading">
+                <h3 class="panel-title">Gender</h3>
+            </div>
+            <div class="panel-body">
+                {% if gender == 'M' %}
+                <p style="font-size:20px">Male</p>
+                {% elif gender == 'F' %}
+                <p style="font-size:20px">female</p>
+                {% else %}
+                <p style="font-size:20px">None</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="panel panel-info"> <!--phone-->
+            <div class="panel-heading">
+                <h3 class="panel-title">Phone</h3>
+            </div>
+            <div class="panel-body">
+                <p style="font-size:20px">{{ phone }}</p>
+            </div>
+        </div>
+
+        <div class="panel panel-info"> <!--preference-->
+            <div class="panel-heading">
+                <h3 class="panel-title">Preference</h3>
+            </div>
+            <div class="panel-body">
+                <p style="font-size:20px">{{ preference }}</p>
+            </div>
+        </div>
+    </ul>
+
+    <footer class="footer">
+        <p>Ready2Go</p>
+    </footer>
+
+</div>
+</body>
+</html>
+

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Search Senice</title>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="img.ico">
+    <script src="../static/js/jquery-1.11.2.js"></script>
+
+
+    <style>
+        .btn-file {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-file input[type=file] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            min-width: 100%;
+            min-height: 100%;
+            font-size: 100px;
+            text-align: right;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            outline: none;
+            background: white;
+            cursor: inherit;
+            display: block;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+    <div class="header">
+        <nav>
+            <ul class="nav nav-pills pull-right">
+                <li role="presentation"><a href="home_login">Home</a></li>
+                <li role="presentation" ><a href="/Showsearch_login">Search</a></li>
+                <li role="presentation"><a href="/personInfo">My Account</a></li>
+                <li role="presentation"><a href="/logout">Log Out</a></li>
+            </ul>
+        </nav>
+        <h3 class="text-primary">Ready2Go <small>SEARCH SCENIC</small></h3>
+    </div>
+
+
+
+
+    <div class="well">
+
+
+        <!--searching框-->
+        <form class="form-signin" action="/searchscenic_login" method="POST">
+            <label for="scenic" class="sr-only">Search scenic spots</label>
+            <input type="text" name="scenic" id="scenic" class="form-control input-lg" placeholder="Search scenic spots" required>
+            <button id="btnSearch" class="btn btn-lg btn-primary btn-block" type="submit">Search</button>
+        </form>
+        <p>{{ error }}</p>
+        <!--searching result-->
+    </div>
+    {% if number==0 %}
+        <div style="font-size:20px">
+            <nav>
+                <p><small>None</small></p>
+            </nav>
+        </div>
+    {% else %}
+        {% for n in record %}
+            <div style="font-size:20px">
+                <nav>
+                    <a href="/scenic_login?scenicname={{n[0]}}">{{n[0]}}</a></li>
+                </nav>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <footer class="footer">
+        <p>Ready2Go</p>
+    </footer>
+
+</div>
+</body>
+</html>
+

@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Scenic info</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="../static/img/img.ico">
+    <script src="../static/js/jquery-1.11.2.js"></script>
+
+    <style>
+        .btn-file {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-file input[type=file] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            min-width: 100%;
+            min-height: 100%;
+            font-size: 100px;
+            text-align: right;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            outline: none;
+            background: white;
+            cursor: inherit;
+            display: block;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+    <div class="header">
+        <nav>
+            <ul class="nav nav-pills pull-right">
+                <li role="presentation"><a href="/">Home</a></li>
+                <li role="presentation" ><a href="/Showsearch">Search</a></li>
+                <li role="presentation"><a href="/ShowSignIn">Sign In</a></li>
+                <li role="presentation"><a href="/ShowSignUp">Sign Up</a></li>
+            </ul>
+        </nav>
+        <h3 class="text-primary">Ready2Go <small>SCENIC INFO</small></h3>
+    </div>
+    <p style="font-size:40px">{{ scenic[0][0] }}</p>
+    <ul class="nav nav-tabs nav-justified" role="tablist">
+
+
+
+        <div class="panel panel-info"> <!--gender-->
+            <div class="panel-heading">
+                <h3 class="panel-title">Location</h3>
+            </div>
+            <div class="panel-body">
+                 <p style="font-size:20px">Country: {{ scenic[0][1] }}</p>
+                 <p style="font-size:20px">State: {{ scenic[0][2] }}</p>
+                 <p style="font-size:20px">City: {{ scenic[0][3] }}</p>
+            </div>
+        </div>
+        <div class="panel panel-info"> <!--route-->
+            <div class="panel-heading">
+                <h3 class="panel-title">Group</h3>
+            </div>
+            <div class="panel-body">
+            {% for n in scenic %}
+                 <div style="font-size:20px"
+                    <nav>
+                        <a href="/result?groupname={{n[4]}}">{{n[4]}}</a>
+                    </nav>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+
+
+
+    </ul>
+
+    <footer class="footer">
+        <p>Ready2Go</p>
+    </footer>
+
+</div>
+</body>
+</html>
+

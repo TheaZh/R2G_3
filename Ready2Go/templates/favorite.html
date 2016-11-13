@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Account</title>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="../static/img/img.ico">
+    <script src="../static/js/jquery-1.11.2.js"></script>
+
+
+    <style>
+        .btn-file {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-file input[type=file] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            min-width: 100%;
+            min-height: 100%;
+            font-size: 100px;
+            text-align: right;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            outline: none;
+            background: white;
+            cursor: inherit;
+            display: block;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+    <div class="header">
+        <nav>
+            <ul class="nav nav-pills pull-right">
+                <li role="presentation"><a href="/home_login">Home</a></li>
+                <li role="presentation" class="active"><a href="#">My Account</a></li>
+                <li role="presentation" ><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+        <h3 class="text-primary">Ready2Go <small>ACCOUNT</small></h3>
+    </div>
+    <ul class="nav nav-tabs nav-justified" role="tablist">
+        <li role="presentation"><a href="/personInfo">Profile</a></li>
+        <li role="presentation"><a href="/history">Order</a></li>
+        <li role="presentation" class="active"><a href="#">Favorite</a></li>
+        <p></p>
+        <div class="panel panel-primary">
+            <!-- Default panel contents -->
+            <div class="panel-heading" style="font-size: 20px"><strong>Favorite List</strong></div>
+            <!-- Table -->
+            <table class="table">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Group Name</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% if num == 0 %}
+                    <tr> <!-- 0 record -->
+                            <td>None</td>
+                    </tr>
+                    {% else %}
+                    {% for x in record%}
+                        <tr> <!-- 1 record -->
+                                    <td>
+                                        <a href="/result_login?groupname={{ x[0] }}">{{ x[0] }}</a>
+                                    </td>
+                        </tr>
+                    {% endfor %}
+                    {% endif %}
+                    </tbody>
+                </table>
+            </table>
+        </div>
+    </ul>
+
+    <footer class="footer">
+        <p>Ready2Go</p>
+    </footer>
+
+</div>
+</body>
+</html>
+

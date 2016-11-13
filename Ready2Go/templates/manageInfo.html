@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Manage Information</title>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="../static/img/img.ico">
+    <script src="../static/js/jquery-1.11.2.js"></script>
+
+
+    <style>
+        .btn-file {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-file input[type=file] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            min-width: 100%;
+            min-height: 100%;
+            font-size: 100px;
+            text-align: right;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            outline: none;
+            background: white;
+            cursor: inherit;
+            display: block;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+    <div class="header">
+        <nav>
+            <ul class="nav nav-pills pull-right">
+                <li role="presentation"><a href="home_login">Home</a></li>
+                <li role="presentation" class="active"><a href="#">My Account</a></li>
+                <li role="presentation" ><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+        <h3 class="text-primary">Ready2Go <small>PERSON INFO</small></h3>
+    </div>
+    <form action="/ManageInfo" method="POST">
+        <div align="right">
+            <p><button id="btnSignIn" class="btn btn-lg btn-primary" type="submit">Submit</button></p>
+        </div>
+        <p>{{ Manage_error }}</p>
+        <!--information-->
+        <div class="panel panel-primary">  <!--name-->
+            <div class="panel-heading">
+                <h3 class="panel-title">Username</h3>
+            </div>
+            <div class="panel-body">
+                <input type="text" name="username" id="username" class="form-control" value="{{ username }}" required>
+                <small>User ID: {{ uid }}</small>
+            </div>
+        </div>
+
+        <!--gender-->
+        <div class="panel panel-info"> <!--gender-->
+            <div class="panel-heading">
+                <h3 class="panel-title">Gender</h3>
+            </div>
+            <div class="panel-body">
+                <label class="radio-inline">
+                    <input type="radio" name="gender" value="F" checked>Female
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="gender" value="M">Male
+                </label>
+            </div>
+        </div>
+
+        <div class="panel panel-info"> <!--phone-->
+            <div class="panel-heading">
+                <h3 class="panel-title">Phone</h3>
+            </div>
+            <div class="panel-body">
+                <input type="text" name="phone" id="phone" class="form-control" value="{{ phone }}">
+            </div>
+        </div>
+
+        <div class="panel panel-info"> <!--preference-->
+            <div class="panel-heading">
+                <h3 class="panel-title">Preference</h3>
+            </div>
+            <div class="panel-body">
+                <label class="radio-inline">
+                    <input type="radio" name="preference" value="oversea tour">Oversea tour
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="preference" value="domestic travel">Domestic travel
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="preference" value="null" checked>None
+                </label>
+            </div>
+        </div>
+    </form>
+    <footer class="footer">
+        <p>Ready2Go</p>
+    </footer>
+
+</div>
+</body>
+</html>
+
