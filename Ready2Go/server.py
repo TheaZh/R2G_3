@@ -58,12 +58,12 @@ def index():
 
 
 #determine if a query is safe
-def is_safe(q):
+def safe_input(q):
     not_safe=['DROP TABLE', 'DELETE FROM','DROP INDEX','DROP FROM','DROP DATABASE','DELETE TABLE','INSERT INTO','SELECT','UPDATE']
     for elem in not_safe:
         if elem in q.upper(): return False
     return True
-def not_contained_space(q):
+def no_space(q):
     if ' ' not in q:
         return True
     return False
@@ -84,7 +84,7 @@ def showsignin():
 def signin():
     username = request.form['username']
     password = request.form['password']
-    if not is_safe(username) or not is_safe(password):
+    if not safe_input(username) or not safe_input(password):
         return render_template('signIn.html', SignIn_error='No SQL. Please try again!')
     cmd = 'SELECT password,u_id FROM Clients WHERE name=(:username1)';
     cursor = g.conn.execute(text(cmd), username1=username);
@@ -125,7 +125,7 @@ def signup():
     new_username = request.form['username']
     new_password = request.form['password']
     # insert new client's information into table clients. if the s username does not exist.
-    if not is_safe(new_username) or not is_safe(new_password):
+    if not safe_input(new_username) or not safe_input(new_password):
         return render_template('signUp.html', SignUp_error='No SQL. Please try again!')
     cmd0 = 'SELECT * FROM clients WHERE name=(:new_username)'
     cur = g.conn.execute(text(cmd0), new_username=new_username)
@@ -140,7 +140,7 @@ def signup():
     global info_uid
     info_uid=uid
     if count == 0:
-        if not_contained_space(new_username) and not_contained_space(new_password):
+        if no_space(new_username) and no_space(new_password):
             # there is no same record in table clients
             cmd = 'INSERT INTO clients(u_id,name,password) VALUES ((:new_uid),(:new_username),(:new_password))';
             g.conn.execute(text(cmd), new_uid=uid, new_username=new_username, new_password=new_password);
@@ -258,7 +258,7 @@ def manageinfo():
     update_phone = request.form['phone']
     update_preference = request.form['preference']
     uid = info_uid  # cannot change u_id
-    if not is_safe(update_username) or not is_safe(update_phone):
+    if not safe_input(update_username) or not safe_input(update_phone):
         manage_error ='No SQL. Please try again!'
         cmd = 'SELECT name,gender,phone,preference FROM clients WHERE u_id=(:uid)'
         cur = g.conn.execute(text(cmd), uid=info_uid)
@@ -268,7 +268,7 @@ def manageinfo():
         cur.close()
         return render_template('manageInfo.html', username=info[0], uid=info_uid, gender=info[1],
                                preference=info[3], phone=info[2], Manage_error=manage_error)
-    if not_contained_space(update_username) and not_contained_space(update_phone):
+    if no_space(update_username) and no_space(update_phone):
         cmd='UPDATE clients set name=(:username),gender=(:gender),phone=(:phone),preference=(:pre) WHERE u_id=(:uid)'
         g.conn.execute(text(cmd), username=update_username, gender=update_gender, phone=update_phone,
                        pre=update_preference, uid=uid)
@@ -304,7 +304,7 @@ def showsearchscenic():
 @app.route('/searchscenic',methods=["POST"])
 def searchscenic():
     scenic = request.form['scenic']
-    if not is_safe(scenic):
+    if not safe_input(scenic):
         return render_template('searchscenic.html', error='No SQL. Please try again!')
     name='%'+ scenic.strip() +'%'
     cmd = 'SELECT name FROM ScenicSpots WHERE lower(name) like lower(:name1)'
@@ -319,7 +319,7 @@ def searchscenic():
 @app.route('/searchscenic_login',methods=["POST"])
 def searchscenic_login():
     scenic = request.form['scenic']
-    if not is_safe(scenic):
+    if not safe_input(scenic):
         return render_template('searchscenic_login.html', error='No SQL. Please try again!')
     name='%'+ scenic.strip() +'%'
     cmd = 'SELECT name FROM ScenicSpots WHERE lower(name) like lower(:name1)'
@@ -335,7 +335,7 @@ def searchscenic_login():
 @app.route('/search',methods=["POST"])
 def search():
     searchgroup = request.form['searchgroup']
-    if not is_safe(searchgroup):
+    if not safe_input(searchgroup):
         return render_template('search.html', error='No SQL. Please try again!')
     name='%'+ searchgroup.strip() +'%'
     cmd = 'SELECT name FROM TravelGroups WHERE lower(name) like lower(:name1)'
@@ -350,7 +350,7 @@ def search():
 @app.route('/search_login',methods=["POST"])
 def search_login():
     searchgroup = request.form['searchgroup']
-    if not is_safe(searchgroup):
+    if not safe_input(searchgroup):
         return render_template('search_login.html', error='No SQL. Please try again!')
     name='%'+ searchgroup.strip() +'%'
     cmd = 'SELECT name FROM TravelGroups WHERE lower(name) like lower(:name1)'
