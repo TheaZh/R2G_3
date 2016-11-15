@@ -57,18 +57,6 @@ def index():
     return render_template('index.html')
 
 
-#determine if a query is safe
-def safe_input(q):
-    not_safe=['DROP TABLE', 'DELETE FROM','DROP INDEX','DROP FROM','DROP DATABASE','DELETE TABLE','INSERT INTO','SELECT','UPDATE']
-    for elem in not_safe:
-        if elem in q.upper(): return False
-    return True
-def no_space(q):
-    if ' ' not in q:
-        return True
-    return False
-
-
 @app.route('/home_login')
 def home_login():
     return render_template('home_login.html', username=user)
@@ -78,6 +66,23 @@ def home_login():
 @app.route('/ShowSignIn')
 def showsignin():
     return render_template('signIn.html')
+
+
+#determine if the input is safe  -- contains no SQL.
+def safe_input(inp):
+    key=['drop','table','database','select','update',';','delete','<!--','insert','--','#']
+    for x in key:
+        if x in inp.lower():
+            return False
+        else:
+            continue
+    return True
+
+#determine if the input contains space which is not allowed.
+def no_space(inp):
+    if not inp.find(' '):  # not contain space
+        return True
+    return False
 
 
 @app.route('/signIn', methods=['POST'])
