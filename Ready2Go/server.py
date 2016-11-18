@@ -80,9 +80,10 @@ def safe_input(inp):
 
 #determine if the input contains space which is not allowed.
 def no_space(inp):
-    if not inp.find(' '):  # not contain space
+    if ' ' not in inp:  # not contain space
         return True
-    return False
+    else:
+        return False
 
 
 @app.route('/signIn', methods=['POST'])
